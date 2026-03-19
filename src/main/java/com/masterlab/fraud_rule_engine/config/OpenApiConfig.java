@@ -15,9 +15,6 @@ public class OpenApiConfig {
             .info(new Info()
                 .title("Fraud Rule Engine API")
                 .description("Production-grade fraud detection system for processing financial transactions")
-                .version("1.0.0")
-                .contact(new Contact()
-                    .name("Fraud Detection Team")
-                    .email("fraud-detection@masterlab.com")));
+                .version("1.0.0"));
     }
 }
