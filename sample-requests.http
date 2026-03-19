@@ -1,0 +1,119 @@
+### Fraud Rule Engine - Sample API Requests
+
+### 1. Process a Normal Transaction (Should be APPROVED)
+POST http://localhost:8080/api/v1/transactions
+Content-Type: application/json
+
+{
+  "transactionId": "TXN-001",
+  "customerId": "CUST-123",
+  "amount": 500.00,
+  "currency": "USD",
+  "type": "PURCHASE",
+  "category": "Groceries",
+  "timestamp": "2026-03-13T14:30:00",
+  "merchantId": "MERCH-001",
+  "merchantName": "SuperMart",
+  "location": "New York, NY"
+}
+
+### 2. Process a High Amount Transaction (Should trigger HIGH_AMOUNT rule)
+POST http://localhost:8080/api/v1/transactions
+Content-Type: application/json
+
+{
+  "transactionId": "TXN-002",
+  "customerId": "CUST-456",
+  "amount": 15000.00,
+  "currency": "USD",
+  "type": "PURCHASE",
+  "category": "Electronics",
+  "timestamp": "2026-03-13T15:00:00",
+  "merchantId": "MERCH-002",
+  "merchantName": "Tech Store",
+  "location": "San Francisco, CA"
+}
+
+### 3. Process a Suspicious Round Amount (Should trigger SUSPICIOUS_AMOUNT rule)
+POST http://localhost:8080/api/v1/transactions
+Content-Type: application/json
+
+{
+  "transactionId": "TXN-003",
+  "customerId": "CUST-789",
+  "amount": 6000.00,
+  "currency": "USD",
+  "type": "WITHDRAWAL",
+  "category": "ATM",
+  "timestamp": "2026-03-13T16:00:00",
+  "merchantId": "MERCH-003",
+  "merchantName": "ATM Network",
+  "location": "Chicago, IL"
+}
+
+### 4. Process a Night Time Transaction (Should trigger NIGHT_TIME_TRANSACTION rule)
+POST http://localhost:8080/api/v1/transactions
+Content-Type: application/json
+
+{
+  "transactionId": "TXN-004",
+  "customerId": "CUST-111",
+  "amount": 3500.00,
+  "currency": "USD",
+  "type": "PURCHASE",
+  "category": "Jewelry",
+  "timestamp": "2026-03-13T02:30:00",
+  "merchantId": "MERCH-004",
+  "merchantName": "Luxury Jewelers",
+  "location": "Miami, FL"
+}
+
+### 5. Process Multiple Transactions for Velocity Check (Run 6 times quickly)
+POST http://localhost:8080/api/v1/transactions
+Content-Type: application/json
+
+{
+  "transactionId": "TXN-VEL-001",
+  "customerId": "CUST-VELOCITY",
+  "amount": 100.00,
+  "currency": "USD",
+  "type": "PURCHASE",
+  "category": "Online",
+  "timestamp": "2026-03-13T17:00:00",
+  "merchantId": "MERCH-005",
+  "merchantName": "Online Store",
+  "location": "Online"
+}
+
+### 6. Get All Transactions
+GET http://localhost:8080/api/v1/transactions
+
+### 7. Get Transaction by ID
+GET http://localhost:8080/api/v1/transactions/1
+
+### 8. Get Transaction by Transaction ID
+GET http://localhost:8080/api/v1/transactions/transaction/TXN-001
+
+### 9. Get Transactions by Customer ID
+GET http://localhost:8080/api/v1/transactions/customer/CUST-123
+
+### 10. Get All Fraudulent Transactions
+GET http://localhost:8080/api/v1/transactions/fraudulent
+
+### 11. Get All Fraud Alerts
+GET http://localhost:8080/api/v1/fraud-alerts
+
+### 12. Get Fraud Alerts by Transaction ID
+GET http://localhost:8080/api/v1/fraud-alerts/transaction/2
+
+### 13. Get Fraud Alerts by Severity
+GET http://localhost:8080/api/v1/fraud-alerts/severity/HIGH
+
+### 14. Get High Priority Alerts
+GET http://localhost:8080/api/v1/fraud-alerts/high-priority
+
+### 15. Health Check
+GET http://localhost:8080/actuator/health
+
+### 16. Application Metrics
+GET http://localhost:8080/actuator/metrics
