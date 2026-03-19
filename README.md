@@ -275,10 +275,7 @@ src/main/java/com/masterlab/fraud_rule_engine/
 - Notification system for fraud alerts
 - Integration with external fraud databases
 
-## License
-
-This project is created for evaluation purposes.
 
 ## Author
 
-Created as part of a technical assessment for a backend developer position.
+Liyabona Saki
